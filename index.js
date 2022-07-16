@@ -10,6 +10,16 @@ var counter=0;
 //WHEN BUTTON IS CLICKED BY PLAYER, IT'LL CHECK FOR CORRECT PATTERN AND WORK ACCORDINGLY
 $(".btn").click(function(){
     var userChosenColour=$(this).attr("id");
+    play(userChosenColour);
+});
+
+$(".btn").on("tap", function(){
+    var userChosenColour=$(this).attr("id");
+    play(userChosenColour);
+});
+
+//PLAY FUNCTION
+function play(userChosenColour){
     playSound(userChosenColour);
     animatePress(userChosenColour);
     if(userChosenColour==gamePattern[counter]){
@@ -23,7 +33,7 @@ $(".btn").click(function(){
     else{
         gameOver();
     }
-});
+}
 
 // GAME OVER FUNCTION
 function gameOver(){
@@ -40,6 +50,12 @@ function gameOver(){
 
 //START FUNCTION
 $(document).keypress(function(){
+    if(level===0){
+        nextSequence();
+    }
+});
+
+$(document).on("tap", function(){
     if(level===0){
         nextSequence();
     }
